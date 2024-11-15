@@ -1,11 +1,23 @@
 <script>
-	let { children } = $props();
+	import '$lib/css/base.css';
+	const { children } = $props();
 </script>
 
-<nav>
-	<a href="/">Home</a>
-	<a href="/blog">Blog</a>
-	<a href="/about">About</a>
-</nav>
+<div class="container">
+	<nav>
+		<a href="/">Home</a>
+		<a href="/blog">Blog</a>
+		<a href="/gallery">Pictures</a>
+		<a href="/about">About</a>
+	</nav>
 
-{@render children()}
+	{@render children()}
+</div>
+
+<style>
+	.container {
+		width: min(700px, 100%);
+		margin: auto;
+		min-height: 100vh;
+	}
+</style>
