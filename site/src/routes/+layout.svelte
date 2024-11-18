@@ -1,15 +1,11 @@
 <script>
 	import '$lib/css/base.css';
+	import Header from '../components/header.svelte';
 	const { children } = $props();
 </script>
 
-<div class="container">
-	<nav>
-		<a href="/">Home</a>
-		<a href="/blog">Blog</a>
-		<a href="/gallery">Pictures</a>
-		<a href="/about">About</a>
-	</nav>
+<div class="container light">
+	<Header />
 
 	{@render children()}
 </div>
