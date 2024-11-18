@@ -1,3 +1,89 @@
 body {
 	margin: 0;
 }
+
+.light {
+	color-scheme: light;
+	--background: var(--light);
+	--text: var(--dark);
+	--text-soft: var(--dark-subdued);
+}
+
+.dark {
+	color-scheme: light;
+	--background: var(--darker);
+	--text: var(--lighter);
+	--text-soft: var(--light-subdued);
+}
+
+a {
+	color: var(--primary);
+}
+
+a:hover {
+	color: var(--primary-hovered);
+}
+
+button {
+	border: none;
+	color: var(--text);
+	background-color: var(--primary);
+}
+
+button:hover {
+	color: var(--primary-hovered);
+}
+
+h1 {
+	font-size: var(--header-one-size);
+	font-weight: 400;
+}
+
+h2 {
+	font-size: var(--header-two-size);
+	font-weight: 400;
+}
+
+h3 {
+	font-size: var(--header-three-size);
+	font-weight: 600;
+}
+
+p,
+label,
+a {
+	font-size: var(--text-size);
+	text-decoration: none;
+}
+
+ul {
+	padding-left: var(--space-large);
+}
+
+:root {
+	--header-one-size: 22px;
+	--header-two-size: 18px;
+	--header-three-size: 16px;
+	--text-size: 14px;
+	--space-x-small: 4px;
+	--space-small: 8px;
+	--space-medium: 12px;
+	--space-large: 16px;
+	--space-x-large: 20px;
+
+	--lighter: #f9f7f1;
+	--light: #f2eee3;
+	--light-subdued: #e0d6b8;
+	--dark-subdued: #2b383b;
+	--dark: #1a2223;
+	--darker: #111617;
+
+	--primary: #52a374;
+	--primary-hovered: #448860;
+	--primary-subdued: #6ab489;
+	--secondary: #f98b24;
+	--secondary-hovered: #db6d06;
+	--secondary-subdued: #faa04c;
+
+	font-family: Arial, Helvetica, sans-serif;
+}
