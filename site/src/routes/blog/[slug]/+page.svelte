@@ -4,6 +4,13 @@
 
 <article>
 	<h1>{data.title}</h1>
-	<p>Published: {data.date}</p>
+	<p class="description">Published: {data.date}</p>
+	<br />
 	<svelte:component this={data.body} />
 </article>
+
+<style>
+	.description {
+		color: var(--text-soft);
+	}
+</style>

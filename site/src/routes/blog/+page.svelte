@@ -12,6 +12,10 @@
 			<a href={post.path}>
 				{post.meta.title}
 			</a>
+			{#if post.meta.description}
+				<br />
+				{post.meta.description}
+			{/if}
 			<br />
 			<span class="post-date">Published {post.meta.date}</span>
 		</li>
