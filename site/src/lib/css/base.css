@@ -73,9 +73,9 @@ ul {
 }
 
 :root {
-	--header-one-size: 22px;
-	--header-two-size: 18px;
-	--header-three-size: 16px;
+	--header-one-size: 32px;
+	--header-two-size: 24px;
+	--header-three-size: 18px;
 	--text-size: 14px;
 	--text-size-small: 12px;
 	--space-x-small: 4px;
