@@ -8,7 +8,6 @@
 
 	const links: NavItem[] = [
 		{ url: '/', label: 'Home' },
-		{ url: '/blog', label: 'Blog' },
 		{ url: '/gallery', label: 'Pictures' },
 		{ url: '/about', label: 'About' }
 	];

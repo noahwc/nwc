@@ -10,4 +10,9 @@ declare global {
 	}
 }
 
-export {};
+interface Post {
+	meta: { url: string | Image; [key: string]: unknown };
+	path: string;
+}
+
+export { Post };

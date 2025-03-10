@@ -1,16 +1,21 @@
 <script>
 	export let data;
+	console.log('image', data.image);
 </script>
 
-<div class="gallet-list">
+<div class="gallery-list">
 	<enhanced:img
 		alt="test"
-		src="/static/gallery/DSCF0967.jpg?w=1280;640;400"
+		src={data.image}
 		sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
 	/>
 	{#each data.posts as post}
-		<a href={post.path}>
-			<img src={post.meta.url} alt={post.meta.title} />
+		<a href={post.path} aria-label={`${post.meta.title} gallery entry`}>
+			<enhanced:img
+				src={post.meta.url}
+				alt={post.meta.title}
+				sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+			/>
 		</a>
 	{/each}
 </div>

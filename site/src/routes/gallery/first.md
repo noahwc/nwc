@@ -1,7 +1,7 @@
 ---
 title: Picture!
 date: '2024-11-15'
-url: https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg
+url: /src/lib/gallery/DSCF0967.jpg
 ---
 
 This is a caption
