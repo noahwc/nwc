@@ -22,8 +22,9 @@
 <style>
 	nav {
 		display: flex;
+		justify-content: center;
 		gap: var(--space-x-large);
-		padding: var(--space-x-large) 0 var(--space-large);
+		padding: var(--space-x-large);
 		font-size: var(--text-size);
 	}
 

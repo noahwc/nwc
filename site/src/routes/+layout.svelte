@@ -12,9 +12,10 @@
 
 <style>
 	.container {
-		width: min(700px, 100%);
+		width: min(900px, 100%);
 		margin: auto;
 		min-height: 100vh;
 		padding: 0 var(--space-x-large);
+		box-sizing: border-box;
 	}
 </style>

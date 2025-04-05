@@ -2,13 +2,13 @@
 	import { readableDateTransform } from '$lib/utils/utils';
 
 	export let data;
-
 	const date_string = readableDateTransform(data.date || '');
 </script>
 
-<article>
-	<img
-		src={`${data.url}?w=1280;640;400`}
+<article class="full-width">
+	<enhanced:img
+		class="img"
+		src={data.url}
 		alt={data.title}
 		sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
 	/>
@@ -23,11 +23,20 @@
 </article>
 
 <style>
+	.full-width {
+		width: 90vw;
+		position: relative;
+		left: 50%;
+		right: 50%;
+		margin-left: -45vw;
+		margin-right: -45vw;
+	}
+
 	img {
-		display: block;
 		width: 100%;
 		height: auto;
-		max-height: 95vh;
+		display: block;
+		max-height: 90vh;
 	}
 
 	p {
