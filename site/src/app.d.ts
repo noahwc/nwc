@@ -14,5 +14,9 @@ interface Post {
 	meta: { url: string | Image; [key: string]: unknown };
 	path: string;
 }
+interface Album {
+	meta: { cover: string | Image; [key: string]: unknown };
+	path: string;
+}
 
-export { Post };
+export { Post, Album };

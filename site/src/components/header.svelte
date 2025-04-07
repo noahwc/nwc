@@ -9,6 +9,7 @@
 	const links: NavItem[] = [
 		{ url: '/', label: 'Home' },
 		{ url: '/gallery', label: 'Pictures' },
+		{ url: '/albums', label: 'Albums' },
 		{ url: '/about', label: 'About' }
 	];
 </script>
