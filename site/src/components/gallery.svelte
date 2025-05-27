@@ -25,7 +25,6 @@
 				alt={item.meta.title}
 				sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
 			/>
-			<p>{item.meta.title}</p>
 		</a>
 	{/each}
 </div>
@@ -44,10 +43,6 @@
 		display: flex;
 		align-items: end;
 		gap: var(--space-large);
-
-		p {
-			margin: 0;
-		}
 
 		&:nth-child(even) {
 			flex-direction: row-reverse;

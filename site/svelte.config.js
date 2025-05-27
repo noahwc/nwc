@@ -16,7 +16,18 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		prerender: {
-			entries: ['*', '/blog', '/blog/*', '/gallery/', '/gallery/*']
+			entries: [
+				'*',
+				'/blog',
+				'/blog/*',
+				'/gallery',
+				'/gallery/*',
+				'/api/blog',
+				'/api/gallery',
+				'/api/albums',
+				'/albums',
+				'/albums/*'
+			]
 		}
 	},
 
