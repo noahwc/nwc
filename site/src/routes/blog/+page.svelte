@@ -7,7 +7,7 @@
 <p>Some things I wrote</p>
 <br />
 <ul>
-	{#each data.posts as post}
+	{#each data.posts as post (post.meta.title)}
 		<li>
 			<a href={post.path}>
 				{post.meta.title}

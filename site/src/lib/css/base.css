@@ -1,39 +1,60 @@
-body {
-	margin: 0;
+:root {
+	/* Typography */
+	--header-one-size: 32px;
+	--header-two-size: 24px;
+	--header-three-size: 18px;
+	--text-size: 14px;
+	--text-size-small: 12px;
+
+	/* Spacing */
+	--space-x-small: 4px;
+	--space-small: 8px;
+	--space-medium: 12px;
+	--space-large: 16px;
+	--space-x-large: 20px;
+
+	/* Colors */
+	--lighter: #f9f7f1;
+	--light: #f2eee3;
+	--light-subdued: #e0d6b8;
+	--dark-subdued: #2b383b;
+	--dark: #1a2223;
+	--darker: #111617;
+
+	/* Theme Colors */
+	--primary: #305f42;
+	--primary-hovered: #295139;
+	--primary-subdued: #376d4c;
+	--secondary: #f98b24;
+	--secondary-hovered: #db6d06;
+	--secondary-subdued: #faa04c;
+
+	font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Theme variants */
 .light {
 	color-scheme: light;
+
 	--background: var(--light);
 	--text: var(--dark);
 	--text-soft: var(--dark-subdued);
 }
 
 .dark {
-	color-scheme: light;
+	color-scheme: dark;
+
 	--background: var(--darker);
 	--text: var(--lighter);
 	--text-soft: var(--light-subdued);
 }
 
-a {
-	color: var(--primary);
+/* Base styles */
+body {
+	margin: 0;
 }
 
-a:hover {
-	color: var(--primary-hovered);
-}
-
-button {
-	border: none;
-	color: var(--text);
-	background-color: var(--primary);
-}
-
-button:hover {
-	color: var(--primary-hovered);
-}
-
+/* Typography */
 h1 {
 	font-size: var(--header-one-size);
 	font-weight: 400;
@@ -64,39 +85,27 @@ p {
 	line-height: 1.5;
 }
 
+/* Links and Buttons */
 a {
+	color: var(--primary);
 	text-decoration: none;
 }
 
-ul {
-	padding-left: var(--space-large);
+a:hover {
+	color: var(--primary-hovered);
 }
 
-:root {
-	--header-one-size: 32px;
-	--header-two-size: 24px;
-	--header-three-size: 18px;
-	--text-size: 14px;
-	--text-size-small: 12px;
-	--space-x-small: 4px;
-	--space-small: 8px;
-	--space-medium: 12px;
-	--space-large: 16px;
-	--space-x-large: 20px;
+button {
+	border: none;
+	color: var(--text);
+	background-color: var(--primary);
+}
 
-	--lighter: #f9f7f1;
-	--light: #f2eee3;
-	--light-subdued: #e0d6b8;
-	--dark-subdued: #2b383b;
-	--dark: #1a2223;
-	--darker: #111617;
+button:hover {
+	color: var(--primary-hovered);
+}
 
-	--primary: #305f42;
-	--primary-hovered: #295139;
-	--primary-subdued: #376d4c;
-	--secondary: #f98b24;
-	--secondary-hovered: #db6d06;
-	--secondary-subdued: #faa04c;
-
-	font-family: Arial, Helvetica, sans-serif;
+/* Lists */
+ul {
+	padding-left: var(--space-large);
 }

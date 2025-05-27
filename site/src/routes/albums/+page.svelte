@@ -3,7 +3,7 @@
 </script>
 
 <div class="album-list">
-	{#each data.albums as album}
+	{#each data.albums as album (album.meta.title)}
 		<a href={album.path} class="album-entry" aria-label={`${album.meta.title} album entry`}>
 			<enhanced:img
 				class="img"
@@ -21,8 +21,7 @@
 		list-style: none;
 		padding-left: 0;
 		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
+		flex-flow: row wrap;
 		gap: var(--space-x-large);
 	}
 

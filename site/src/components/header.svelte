@@ -15,7 +15,7 @@
 </script>
 
 <nav>
-	{#each links as link}
+	{#each links as link (link.label)}
 		<a class:active={$page.url.pathname === link.url} href={link.url}>{link.label}</a>
 	{/each}
 </nav>

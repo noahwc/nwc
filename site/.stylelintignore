@@ -1,0 +1,13 @@
+# Build directories
+build/
+.svelte-kit/
+dist/
+
+# Dependencies
+node_modules/
+
+# Coverage reports
+coverage/
+
+# Storybook
+storybook-static/ 

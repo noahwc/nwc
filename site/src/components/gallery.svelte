@@ -17,7 +17,7 @@
 </script>
 
 <div class="gallery-list">
-	{#each items as item}
+	{#each items as item (item.meta.url)}
 		<a href={item.path} class="gallery-entry" aria-label={`${item.meta.title} gallery entry`}>
 			{#if item.meta.url}
 				<enhanced:img
@@ -38,8 +38,7 @@
 		list-style: none;
 		padding-left: 0;
 		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
+		flex-flow: row wrap;
 		gap: var(--space-large);
 	}
 
