@@ -23,20 +23,21 @@
 		display: flex;
 		flex-direction: row;
 		flex-wrap: wrap;
-		gap: var(--space-large);
+		gap: var(--space-x-large);
 	}
 
 	.album-entry {
 		display: flex;
 		align-items: end;
-		gap: var(--space-large);
+		flex-direction: column;
+		gap: var(--space-x-small);
 
 		p {
+			font-size: var(--font-size-large);
 			margin: 0;
 		}
 
 		&:nth-child(even) {
-			flex-direction: row-reverse;
 			margin-left: auto;
 		}
 	}

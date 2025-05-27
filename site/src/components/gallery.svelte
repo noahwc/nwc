@@ -19,13 +19,16 @@
 <div class="gallery-list">
 	{#each items as item}
 		<a href={item.path} class="gallery-entry" aria-label={`${item.meta.title} gallery entry`}>
-			<enhanced:img
-				class="img"
-				src={item.meta.url}
-				alt={item.meta.title}
-				sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-			/>
-			<p>{item.meta.title}</p>
+			{#if item.meta.url}
+				<enhanced:img
+					class="img"
+					src={item.meta.url}
+					alt={item.meta.title}
+					sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+				/>
+			{:else}
+				<div class="error-message">Image not available</div>
+			{/if}
 		</a>
 	{/each}
 </div>
@@ -45,10 +48,6 @@
 		align-items: end;
 		gap: var(--space-large);
 
-		p {
-			margin: 0;
-		}
-
 		&:nth-child(even) {
 			flex-direction: row-reverse;
 			margin-left: auto;
@@ -60,5 +59,15 @@
 		min-width: 300px;
 		max-width: 700px;
 		height: auto;
+	}
+
+	.error-message {
+		text-align: center;
+		padding: 2rem;
+		background-color: #f8f8f8;
+		border-radius: 4px;
+		color: #666;
+		min-width: 300px;
+		max-width: 700px;
 	}
 </style>
