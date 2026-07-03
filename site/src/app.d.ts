@@ -11,11 +11,17 @@ declare global {
 }
 
 interface Post {
-	meta: { url: string | Image; [key: string]: unknown };
+	meta: {
+		url: string | Image;
+		title: string;
+		date: string;
+		description?: string;
+		[key: string]: unknown;
+	};
 	path: string;
 }
 interface Album {
-	meta: { cover: string | Image; [key: string]: unknown };
+	meta: { cover: string | Image; title: string; [key: string]: unknown };
 	path: string;
 }
 

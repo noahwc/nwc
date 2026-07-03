@@ -1,4 +1,3 @@
-// place files you want to import through the `$lib` alias in this folder.
-import { gallery } from './gallery/gallery';
+import { albumImages } from './images';
 
-export { gallery };
+export { albumImages };

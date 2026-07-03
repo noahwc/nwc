@@ -1,29 +1,46 @@
+import { albumImages } from '../images';
+
 export const fetchPosts = async (type: 'blog' | 'gallery' | 'albums') => {
 	interface MarkdownFile {
-		metadata: unknown;
+		metadata: Record<string, any>;
 		default: unknown;
 	}
 
-	type MarkdownFileImport = [string, () => Promise<MarkdownFile>][];
-	type postGlob = Record<string, () => Promise<unknown>>;
-
-	let postFiles: postGlob;
-
-	// Use separate import.meta.glob calls with literal strings
 	if (type === 'gallery') {
-		postFiles = import.meta.glob('/src/routes/gallery/*.md');
-	} else if (type === 'albums') {
-		postFiles = import.meta.glob('/src/routes/albums/*.md');
-	} else {
-		postFiles = import.meta.glob('/src/routes/blog/*.md');
+		return Object.keys(albumImages).map((filepath) => {
+			return {
+				meta: { url: albumImages[filepath], title: filepath.split('/').pop() },
+				path: '#'
+			};
+		});
 	}
 
-	const postsList = Object.entries(postFiles) as MarkdownFileImport;
+	const globs = {
+		blog: import.meta.glob('/src/content/blog/*.md'),
+		albums: import.meta.glob('/src/content/albums/*/index.md')
+	};
+
+	const postFiles = globs[type];
+	if (!postFiles) return [];
 
 	const allPosts = await Promise.all(
-		postsList.map(async ([path, resolver]) => {
-			const { metadata } = await resolver();
-			return { meta: metadata, path: path.slice(11, -3) };
+		Object.entries(postFiles).map(async ([filepath, resolver]) => {
+			const { metadata } = await (resolver as () => Promise<MarkdownFile>)();
+			
+			// Remove /src/content/ and file extension to get the clean path
+			const path = filepath.split('/src/content/')[1].split('/index.md')[0].split('.md')[0];
+			
+			const resolveImage = (img: string) => {
+				if (!img) return img;
+				const fullPath = img.replace('./', `/src/content/${path}/`);
+				return albumImages[fullPath] || albumImages[img] || img;
+			};
+
+			// Resolve images directly into the metadata
+			if (metadata.cover) metadata.cover = resolveImage(metadata.cover as string);
+			if (metadata.url) metadata.url = resolveImage(metadata.url as string);
+
+			return { meta: metadata, path };
 		})
 	);
 
