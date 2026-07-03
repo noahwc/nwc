@@ -1,16 +1,10 @@
 <!-- reuseable gallery goes here so it can be used in albums and the photos feed -->
 
 <script lang="ts">
+	import type { Post } from '../app';
+
 	interface GalleryProps {
-		items: [
-			{
-				meta: {
-					title: string;
-					url: string;
-				};
-				path: string;
-			}
-		];
+		items: Post[];
 	}
 
 	let { items }: GalleryProps = $props();
@@ -18,18 +12,33 @@
 
 <div class="gallery-list">
 	{#each items as item (item.meta.url)}
-		<a href={item.path} class="gallery-entry" aria-label={`${item.meta.title} gallery entry`}>
-			{#if item.meta.url}
-				<enhanced:img
-					class="img"
-					src={item.meta.url}
-					alt={item.meta.title}
-					sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
-				/>
-			{:else}
-				<div class="error-message">Image not available</div>
-			{/if}
-		</a>
+		{#if item.path !== '#'}
+			<a href={item.path} class="gallery-entry" aria-label={`${item.meta.title} gallery entry`}>
+				{#if item.meta.url}
+					<enhanced:img
+						class="img"
+						src={item.meta.url}
+						alt={item.meta.title as string}
+						sizes="(min-width: 768px) 700px, 100vw"
+					/>
+				{:else}
+					<div class="error-message">Image not available</div>
+				{/if}
+			</a>
+		{:else}
+			<div class="gallery-entry" aria-label={`${item.meta.title} gallery entry`}>
+				{#if item.meta.url}
+					<enhanced:img
+						class="img"
+						src={item.meta.url}
+						alt={item.meta.title as string}
+						sizes="(min-width: 768px) 700px, 100vw"
+					/>
+				{:else}
+					<div class="error-message">Image not available</div>
+				{/if}
+			</div>
+		{/if}
 	{/each}
 </div>
 

@@ -21,7 +21,6 @@ const config = {
 				'/blog',
 				'/blog/*',
 				'/gallery',
-				'/gallery/*',
 				'/api/blog',
 				'/api/gallery',
 				'/api/albums',
