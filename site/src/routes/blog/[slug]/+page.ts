@@ -1,8 +1,10 @@
 import type { Frontematter } from '$lib/utils/types';
+import type { PageLoad } from './$types';
+import { error } from '@sveltejs/kit';
 
-export async function load({ params }) {
+export const load: PageLoad = async ({ params }) => {
 	try {
-		const post = await import(`../${params.slug}.md`);
+		const post = await import(`../../../content/blog/${params.slug}.md`);
 		const { title, date } = post.metadata as Frontematter;
 		const body = post.default;
 		return {
@@ -10,7 +12,7 @@ export async function load({ params }) {
 			title,
 			date
 		};
-	} catch (error) {
-		console.log('Error loading post! \n', error);
+	} catch (e) {
+		throw error(404, 'Post not found');
 	}
-}
+};

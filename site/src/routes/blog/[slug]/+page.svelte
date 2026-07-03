@@ -1,16 +1,17 @@
-<script>
+<script lang="ts">
 	import { readableDateTransform } from '$lib/utils/utils';
 
-	export let data;
+	let { data } = $props();
 
 	const date_string = readableDateTransform(data.date || '');
+	const Body = data.body;
 </script>
 
 <article>
 	<h1>{data.title}</h1>
 	<p class="description">Published: {date_string}</p>
 	<br />
-	<svelte:component this={data.body} />
+	<Body />
 </article>
 
 <style>

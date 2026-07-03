@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import Gallery from '../../../components/gallery.svelte';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <Gallery items={data.posts} />

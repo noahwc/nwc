@@ -1,5 +1,5 @@
-<script>
-	export let data;
+<script lang="ts">
+	let { data } = $props();
 </script>
 
 <div class="album-list">
@@ -9,7 +9,7 @@
 				class="img"
 				src={album.meta.cover}
 				alt={album.meta.title}
-				sizes="(min-width:1920px) 1280px, (min-width:1080px) 640px, (min-width:768px) 400px"
+				sizes="(min-width: 768px) 700px, 100vw"
 			/>
 			<p>{album.meta.title}</p>
 		</a>

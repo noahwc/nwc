@@ -1,17 +1,19 @@
-import { gallery } from '$lib';
 import type { Frontematter } from '$lib/utils/types';
 import type { Post } from '../../../app';
+import type { PageLoad } from './$types';
+import { error } from '@sveltejs/kit';
 
-export async function load({ params }) {
-	const post = await import(`../${params.slug}.md`);
-	const { title } = post.metadata as Frontematter;
-	const body = post.default;
+export const load: PageLoad = async ({ params, fetch }) => {
+	try {
+		const post = await import(`../../../content/albums/${params.slug}/index.md`);
+		const { title } = post.metadata as Frontematter;
+		const body = post.default;
 
-	const response = await fetch(`/api/gallery`);
-	const posts = await response.json();
-	posts.filter((post: Post) => post.meta.album === params.slug);
-	const postsImageInjected = posts.map((post: Post) => {
-		return { ...post, meta: { ...post.meta, url: gallery[post.meta.url] } };
-	});
-	return { body, title, posts: postsImageInjected };
-}
+		const response = await fetch(`/api/gallery`);
+		const posts = await response.json();
+		const filteredPosts = posts.filter((post: Post) => post.meta.url.img?.src.includes(`albums/${params.slug}/`) || (typeof post.meta.url === 'string' && post.meta.url.includes(`albums/${params.slug}/`)));
+		return { body, title, posts: filteredPosts };
+	} catch (e) {
+		throw error(404, 'Album not found');
+	}
+};
