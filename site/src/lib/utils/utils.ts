@@ -3,5 +3,3 @@ export const readableDateTransform = (date_str: string): string => {
 	const month = date.toLocaleString('default', { month: 'long' });
 	return `${month} ${date.getDate()}, ${date.getFullYear()}`;
 };
-
-

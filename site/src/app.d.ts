@@ -1,5 +1,6 @@
+import type { Image } from '$lib/photos';
+
 // See https://svelte.dev/docs/kit/types#app.d.ts
-// for information about these interfaces
 declare global {
 	namespace App {
 		// interface Error {}
@@ -10,19 +11,19 @@ declare global {
 	}
 }
 
-interface Post {
-	meta: {
-		url: string | Image;
-		title: string;
-		date: string;
-		description?: string;
-		[key: string]: unknown;
-	};
-	path: string;
-}
-interface Album {
-	meta: { cover: string | Image; title: string; [key: string]: unknown };
-	path: string;
+/** One thumbnail in a grid. */
+export interface GalleryThumb {
+	url: Image;
+	alt: string;
+	href: string;
 }
 
-export { Post, Album };
+/** One card on the galleries index. */
+export interface GalleryMeta {
+	slug: string;
+	title: string;
+	description?: string;
+	cover?: Image;
+}
+
+export type { Image } from '$lib/photos';

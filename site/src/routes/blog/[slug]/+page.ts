@@ -12,7 +12,7 @@ export const load: PageLoad = async ({ params }) => {
 			title,
 			date
 		};
-	} catch (e) {
+	} catch {
 		throw error(404, 'Post not found');
 	}
 };

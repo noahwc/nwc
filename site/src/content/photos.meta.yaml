@@ -1,0 +1,8 @@
+# Per-image overrides keyed by id (= filename without extension).
+# All fields optional; sparse. Applies everywhere the image appears,
+# then a gallery's inline entry overrides win for that gallery only.
+#
+# DSCF1017:
+#   title: Low tide, Dana Point
+#   date: 2024-03-10T08:12:00.000Z
+#   description: Shot at golden hour.

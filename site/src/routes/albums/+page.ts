@@ -1,7 +1,5 @@
-import type { PageLoad } from './$types';
+import { redirect } from '@sveltejs/kit';
 
-export const load: PageLoad = async ({ fetch }) => {
-	const response = await fetch(`/api/albums`);
-	const albums = await response.json();
-	return { albums };
+export const load = () => {
+	throw redirect(308, '/galleries');
 };

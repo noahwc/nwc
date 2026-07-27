@@ -4,4 +4,5 @@
 	let { data } = $props();
 </script>
 
-<Gallery items={data.posts} />
+<h1>Pictures</h1>
+<Gallery items={data.items} />

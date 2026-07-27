@@ -20,10 +20,16 @@ const config = {
 				'*',
 				'/blog',
 				'/blog/*',
-				'/gallery',
+				'/photos',
+				'/photos/*',
+				'/galleries',
+				'/galleries/*',
 				'/api/blog',
-				'/api/gallery',
-				'/api/albums',
+				'/api/photos',
+				'/api/galleries',
+				// legacy redirects, kept for old links
+				'/gallery',
+				'/gallery/*',
 				'/albums',
 				'/albums/*'
 			]
