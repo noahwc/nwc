@@ -12,14 +12,14 @@ declare global {
 }
 
 /** One thumbnail in a grid. */
-export interface GalleryThumb {
+export interface AlbumThumb {
 	url: Image;
 	alt: string;
 	href: string;
 }
 
-/** One card on the galleries index. */
-export interface GalleryMeta {
+/** One card on the albums index. */
+export interface AlbumMeta {
 	slug: string;
 	title: string;
 	description?: string;

@@ -22,16 +22,11 @@ const config = {
 				'/blog/*',
 				'/photos',
 				'/photos/*',
-				'/galleries',
-				'/galleries/*',
+				'/albums',
+				'/albums/*',
 				'/api/blog',
 				'/api/photos',
-				'/api/galleries',
-				// legacy redirects, kept for old links
-				'/gallery',
-				'/gallery/*',
-				'/albums',
-				'/albums/*'
+				'/api/albums'
 			]
 		}
 	},

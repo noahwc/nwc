@@ -1,7 +1,8 @@
 import { json } from '@sveltejs/kit';
 import type { RequestEvent } from '@sveltejs/kit';
 import { getPhotos } from '$lib/photos';
-import { getGalleries } from '$lib/galleries';
+import { getAlbums } from '$lib/albums';
+import { stem } from '$lib/path-utils';
 
 export const prerender = true;
 
@@ -13,18 +14,18 @@ async function getBlog() {
 			const { metadata } = await (
 				resolver as () => Promise<{ metadata: Record<string, string> }>
 			)();
-			const slug = filepath.split('/').pop()!.replace(/\.md$/, '');
+			const slug = stem(filepath);
 			return { meta: metadata, path: `/blog/${slug}` };
 		})
 	);
 }
 
 export const GET = async ({ params }: RequestEvent) => {
-	switch (params.postType as 'photos' | 'galleries' | 'blog') {
+	switch (params.postType as 'photos' | 'albums' | 'blog') {
 		case 'photos':
 			return json(await getPhotos());
-		case 'galleries':
-			return json(await getGalleries());
+		case 'albums':
+			return json(await getAlbums());
 		case 'blog':
 			return json(await getBlog());
 		default:

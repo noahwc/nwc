@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { GalleryThumb } from '../app';
+	import type { AlbumThumb } from '../app';
 
-	let { items }: { items: GalleryThumb[] } = $props();
+	let { items }: { items: AlbumThumb[] } = $props();
 </script>
 
 <div class="gallery-list">

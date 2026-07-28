@@ -1,6 +1,6 @@
 <script lang="ts">
 	let { data } = $props();
-	const { photo, galleries, dateLabel } = data;
+	const { photo, albums, dateLabel } = data;
 </script>
 
 <article class="full-width">
@@ -15,10 +15,10 @@
 		<strong>{photo.title}</strong>
 		{#if dateLabel}<br />{dateLabel}{/if}
 		{#if photo.description}<br />{photo.description}{/if}
-		{#if galleries.length}
-			<br />Galleries:
-			{#each galleries as g, i (g.slug)}
-				<a href={`/galleries/${g.slug}`}>{g.title}</a>{#if i < galleries.length - 1},
+		{#if albums.length}
+			<br />Albums:
+			{#each albums as a, i (a.slug)}
+				<a href={`/albums/${a.slug}`}>{a.title}</a>{#if i < albums.length - 1},
 				{/if}
 			{/each}
 		{/if}

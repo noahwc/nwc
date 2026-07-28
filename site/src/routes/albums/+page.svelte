@@ -2,32 +2,32 @@
 	let { data } = $props();
 </script>
 
-<h1>Galleries</h1>
+<h1>Albums</h1>
 
-<div class="gallery-list">
-	{#each data.galleries as g (g.slug)}
-		<a href={`/galleries/${g.slug}`} class="gallery-entry" aria-label={`${g.title} gallery`}>
-			{#if g.cover}
+<div class="album-list">
+	{#each data.albums as album (album.slug)}
+		<a href={`/albums/${album.slug}`} class="album-entry" aria-label={`${album.title} album`}>
+			{#if album.cover}
 				<enhanced:img
 					class="img"
-					src={g.cover}
-					alt={g.title}
+					src={album.cover}
+					alt={album.title}
 					sizes="(min-width: 768px) 700px, 100vw"
 				/>
 			{/if}
-			<p>{g.title}</p>
+			<p>{album.title}</p>
 		</a>
 	{/each}
 </div>
 
 <style>
-	.gallery-list {
+	.album-list {
 		display: flex;
 		flex-flow: row wrap;
 		gap: var(--space-x-large);
 	}
 
-	.gallery-entry {
+	.album-entry {
 		display: flex;
 		align-items: end;
 		flex-direction: column;

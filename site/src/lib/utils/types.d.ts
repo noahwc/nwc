@@ -1,3 +1,3 @@
-export type Frontematter = {
+export type BlogFrontmatter = {
 	[key: string]: string;
 };

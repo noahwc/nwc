@@ -1,4 +1,5 @@
 import exifr from 'exifr';
+import { stem } from './path-utils';
 import { existsSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse as parseYaml } from 'yaml';
@@ -15,13 +16,6 @@ export type Photo = {
 	description?: string;
 	url: Image;
 };
-
-/** id = filename without extension. */
-const idOf = (p: string) =>
-	p
-		.split('/')
-		.pop()!
-		.replace(/\.jpg$/i, '');
 
 /** All source photos, processed by enhanced-img at four widths. Browser-safe. */
 const photoAssets = import.meta.glob<Image>('/src/content/photos/*.jpg', {
@@ -42,49 +36,45 @@ const overrides = (() => {
 const dateCache: Record<string, string> = {};
 const dateOf = async (id: string, abs: string): Promise<string> => {
 	if (dateCache[id]) return dateCache[id];
-	let date = '';
-	try {
-		const exif = await exifr.parse(abs, { exif: true });
-		const d = exif?.DateTimeOriginal ?? exif?.CreateDate ?? exif?.ModifyDate;
-		date = d instanceof Date ? d.toISOString() : '';
-	} catch {
-		/* no exif */
-	}
-	if (!date) {
+	const date = await (async () => {
 		try {
-			date = statSync(abs).mtime.toISOString();
+			const exif = await exifr.parse(abs, { exif: true });
+			const d = exif?.DateTimeOriginal ?? exif?.CreateDate ?? exif?.ModifyDate;
+			if (d instanceof Date) return d.toISOString();
 		} catch {
-			/* unreadable */
+			/* no exif */
 		}
-	}
+		try {
+			return statSync(abs).mtime.toISOString();
+		} catch {
+			return '';
+		}
+	})();
 	dateCache[id] = date;
 	return date;
 };
 
-let cache: Promise<Photo[]> | undefined;
-
 /** Every photo as a record, newest-first. Server-only (fs + exifr). */
-export const getPhotos = (): Promise<Photo[]> => {
-	if (!cache) {
-		cache = (async () => {
-			const photos: Photo[] = [];
-			for (const [filepath, url] of Object.entries(photoAssets)) {
-				const id = idOf(filepath);
-				const abs = join(ROOT, filepath.slice(1));
-				const ov = overrides[id] ?? {};
-				photos.push({
-					id,
-					title: ov.title ?? id,
-					date: ov.date ?? (await dateOf(id, abs)),
-					description: ov.description,
-					url
-				});
-			}
-			photos.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
-			return photos;
-		})();
-	}
-	return cache;
+export let getPhotos = (): Promise<Photo[]> => {
+	const result = (async () => {
+		const photos: Photo[] = [];
+		for (const [filepath, url] of Object.entries(photoAssets)) {
+			const id = stem(filepath);
+			const abs = join(ROOT, filepath.slice(1));
+			const ov = overrides[id] ?? {};
+			photos.push({
+				id,
+				title: ov.title ?? id,
+				date: ov.date ?? (await dateOf(id, abs)),
+				description: ov.description,
+				url
+			});
+		}
+		photos.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+		return photos;
+	})();
+	getPhotos = () => result;
+	return result;
 };
 
 export const getPhoto = async (id: string): Promise<Photo | undefined> =>
